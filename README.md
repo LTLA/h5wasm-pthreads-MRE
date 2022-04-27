@@ -4,9 +4,9 @@
 
 1. Install and activate the latest Emscripten (3.1.9).
 2. Run `./build.sh` to build the minimal example.
-3. Run `./run.sh` to run through 100 iterations of the test code.
+3. Run `./run.sh` to run through a few hundred iterations of the test code.
 
-This will usually give errors like:
+Once every hundred iterations or so, this will give sporadic errors like:
 
 ```
 RuntimeError: Aborted(segmentation fault)
@@ -24,5 +24,7 @@ RuntimeError: Aborted(segmentation fault)
 
 Observations:
 
-- Failure rate is very low but reproducible; around 1 per 200 runs.
-- Doesn't fail with 3.1.8 (tested 600 runs).
+- Failure rate is very low but reproducible; around 1 per 200 runs on my Mac.
+- You may need to increase the number of threads in `minimal.cpp` and the linker flags to get the error to trigger at a reasonable rate.
+  For my Ubuntu machine, I need to bump it up to 8 threads to get the same error rate as the Mac.
+- Doesn't fail with 3.1.8 (tested ~1000 runs).
